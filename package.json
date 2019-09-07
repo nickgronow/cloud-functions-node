@@ -1,0 +1,17 @@
+{
+  "name": "shared-lib",
+  "version": "1.0.0",
+  "description": "Collection of common functions we will need in cloud functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Gronow",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.6.0",
+    "node-fetch": "^2.6.0",
+    "redis": "^2.8.0"
+  }
+}
