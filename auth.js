@@ -8,19 +8,6 @@ module.exports = {
   auth0Subdomain: null,
   secretPrefix: null,
   audience: null,
-  client: redis.connect(),
-
-  url () {
-    return 'https://' + this.auth0Subdomain + '.auth0.com/oauth/token'
-  },
-
-  clientId () {
-    return faas.secret(this.prefix + '-auth-client-id')
-  },
-
-  clientSecret () {
-    return faas.secret(this.prefix + '-auth-client-secret')
-  },
 
   async getToken (auth0Subdomain, secretPrefix, audience) {
     this.auth0Subdomain = auth0Subdomain
@@ -38,12 +25,20 @@ module.exports = {
     return newToken
   },
 
-  decodeToken (token) {
-    return jwt.verify(token, this.getJwksKey)
+  url () {
+    return 'https://' + this.auth0Subdomain + '.auth0.com/oauth/token'
   },
 
-  getExistingAuthToken () {
-    this.client.getAsync('jwt-token')
+  clientId () {
+    return faas.secret(this.prefix + '-auth-client-id')
+  },
+
+  clientSecret () {
+    return faas.secret(this.prefix + '-auth-client-secret')
+  },
+
+  decodeToken (token) {
+    return jwt.verify(token, this.getJwksKey)
   },
 
   getJwksKey (header, callback) {
@@ -66,7 +61,11 @@ module.exports = {
     return http.post(this.url(), body)
   },
 
+  getExistingAuthToken () {
+    return redis.connect(this.secretPrefix).getAsync('jwt-token')
+  },
+
   saveAuthToken (token) {
-    this.client.setAsync('jwt-token', token)
+    return redis.connect(this.secretPrefix).setAsync('jwt-token', token)
   }
 }
