@@ -15,13 +15,17 @@ module.exports = {
     this.audience = audience
     const existingToken = await this.getExistingAuthToken()
     if (existingToken) {
+      console.log('Found an existing auth token.  Decoding...')
       const decoded = this.decodeToken(existingToken)
       if (decoded) {
+        console.log('Verified existing auth token is valid')
         return existingToken
       }
     }
+    console.log('Getting new auth token...')
     const newToken = await this.getNewAuthToken()
     await this.saveAuthToken(newToken)
+    console.log('Got new auth token and saved it for future use')
     return newToken
   },
 
