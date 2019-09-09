@@ -1,6 +1,6 @@
 const { query } = require('graphqurl')
 
-export default {
+module.exports = {
   endpoint: 'http://localhost:8081/v1/graphql',
 
   headers: {
