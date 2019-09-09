@@ -1,6 +1,8 @@
 const { query } = require('graphqurl')
 
 export default {
+  endpoint: 'http://localhost:8081/v1/graphql',
+
   headers: {
     'x-hasura-admin-secret': 'secret',
     'content-type': 'application/json'
@@ -11,7 +13,7 @@ export default {
   getResults: (name, graphQuery, data) => {
     return query({
       query: graphQuery,
-      endpoint: 'http://localhost:8081/v1/graphql',
+      endpoint: this.endpoint,
       headers: this.headers,
       variables: data
     })
