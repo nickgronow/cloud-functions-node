@@ -2,6 +2,7 @@
   "name": "shared-lib",
   "version": "1.0.0",
   "description": "Collection of common functions we will need in cloud functions",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
