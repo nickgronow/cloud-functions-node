@@ -10,10 +10,10 @@ module.exports = {
 
   query,
 
-  getResults: (name, graphQuery, data) => {
+  getResults: function (name, graphQuery, data) {
     return query({
       query: graphQuery,
-      endpoint: 'http://localhost:8081/v1/graphql',
+      endpoint: this.endpoint,
       headers: this.headers,
       variables: data
     })
