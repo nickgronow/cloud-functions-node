@@ -1,6 +1,6 @@
 {
   "name": "shared-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Collection of common functions we will need in cloud functions",
   "private": true,
   "main": "index.js",
@@ -10,6 +10,8 @@
   "author": "Nick Gronow",
   "license": "ISC",
   "dependencies": {
+    "graphql": "^14.5.4",
+    "graphqurl": "^0.3.3",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.6.0",
     "node-fetch": "^2.6.0",
