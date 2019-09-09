@@ -2,6 +2,11 @@ const fs = require('fs')
 
 module.exports = {
   secret (name) {
-    return fs.readFileSync('/var/openfaas/secrets/' + name, 'utf8')
+    const envVar = process.env[name]
+    if (envVar) {
+      return envVar
+    } else {
+      return fs.readFileSync('/var/openfaas/secrets/' + name, 'utf8')
+    }
   }
 }
