@@ -46,8 +46,12 @@ module.exports = {
       jwksUri: 'https://' + this.auth0Subdomain + '.auth0.com/.well-known/jwks.json'
     })
     client.getSigningKey(header.kid, (err, key) => {
-      const signingKey = key.publicKey || key.rsaPublicKey
-      callback(null, signingKey)
+      if (err) {
+        console.log('Error getting signing key: ' + err.message)
+      } else {
+        const signingKey = key.publicKey || key.rsaPublicKey
+        callback(null, signingKey)
+      }
     })
   },
 
