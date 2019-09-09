@@ -1,7 +1,7 @@
 const { query } = require('graphqurl')
 
 module.exports = {
-  endpoint: 'http://localhost:8081/v1/graphql',
+  endpoint: process.env.GRAPHQL_URL,
 
   headers: {
     'x-hasura-admin-secret': 'secret',
