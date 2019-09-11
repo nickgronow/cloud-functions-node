@@ -7,12 +7,14 @@ const headers = {
   'content-type': 'application/json'
 }
 
-module.exports = {
-  client: new GraphQLClient(endpoint, { headers: headers }),
+const client = new GraphQLClient(endpoint, { headers: headers })
 
-  getResults: function (name, graphQuery, data) {
-    return this.client.request(graphQuery, data)
-      .then(result => result.data[name])
+module.exports = {
+  client,
+
+  getResults: function (name, query, data) {
+    return this.client.request(query, data)
+      .then(result => result[name] || result)
       .catch(err => err.message)
   }
 }
