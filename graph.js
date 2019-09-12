@@ -1,9 +1,10 @@
 const { GraphQLClient } = require('graphql-request')
 
-const endpoint = process.env.GRAPHQL_URL
+const endpoint = process.env.GRAPHQL_URL || 'http://localhost:8081/v1/graphql'
+const secret = process.env.GRAPHQL_SECRET || 'secret'
 
 const headers = {
-  'x-hasura-admin-secret': 'secret',
+  'x-hasura-admin-secret': secret,
   'content-type': 'application/json'
 }
 
