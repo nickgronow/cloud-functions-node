@@ -1,6 +1,6 @@
-const faas = require('./faas')
-const http = require('./http')
-const graph = require('./graph')
+const faas = require('./lib/faas')
+const http = require('./lib/http')
+const graph = require('./lib/graph')
 
 module.exports = {
   faas,
