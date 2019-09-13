@@ -28,21 +28,14 @@ Here is the list of supported variables:
 
 # Deployment
 
-When you have completed making changes, and tests are passing, increment the version in the `package.json` file.  Then you can run:
+When you have completed making changes, and tests are passing, commit all your changes, then run:
 
 ```
-npm pack .
+npm run release
 ```
 
-in the root directory to create a tarball that can be used in our functions.  Once it is created, move it to the `releases` directory:
+This will increment the patch version, create a git tag, generate a new pack file, and move it to the releases directory.  Now you are ready to push your changes to github.
 
 ```
-mv shared-* releases/
-```
-
-Also please tag the latest commit with the tag of the new version:
-
-```
-git tag v1.x.x
-git push --tags
+git push && git push --tags
 ```
