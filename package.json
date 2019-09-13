@@ -5,7 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "version": "npm pack . && mv shared-lib* releases/ && git add releases/*",
+    "release": "npm version patch"
   },
   "author": "Nick Gronow",
   "license": "ISC",
