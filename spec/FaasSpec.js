@@ -5,6 +5,16 @@ describe("Faas", function () {
     this.name = 'a-secret-variable'
   })
 
+  describe('prefix', function() {
+    it('should not include a prefix if one is not defined', function() {
+      expect(Faas.prefix(this.name)).toBe(this.name)
+    })
+    it('should include a prefix if one is defined', function() {
+      process.env.APP_NAME = 'prefix'
+      expect(Faas.prefix(this.name)).toBe('prefix-' + this.name)
+    })
+  })
+
   describe('nameToEnvName', function () {
     it('should be able to convert to environment names', function () {
       expect(Faas.nameToEnvName(this.name)).toBe('A_SECRET_VARIABLE')
