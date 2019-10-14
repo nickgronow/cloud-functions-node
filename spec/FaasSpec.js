@@ -12,6 +12,7 @@ describe("Faas", function () {
     it('should include a prefix if one is defined', function() {
       process.env.APP_NAME = 'prefix'
       expect(Faas.prefix(this.name)).toBe('prefix-' + this.name)
+      delete process.env.APP_NAME
     })
   })
 
@@ -53,13 +54,15 @@ describe("Faas", function () {
       describe('when a file does exist', function () {
         beforeEach(function () {
           const fs = require('fs')
+          process.env.APP_NAME = 'app'
           process.env.FAAS_SECRET_PATH = './'
-          fs.writeFileSync(this.name, 'secret in a file')
+          fs.writeFileSync('app-' + this.name, 'secret in a file')
         })
         afterEach(function () {
           const fs = require('fs')
           process.env.FAAS_SECRET_PATH = './'
-          fs.unlink(this.name, () => {})
+          fs.unlink('app-' + this.name, () => {})
+          delete process.env.APP_NAME
         })
         it('should return the contents of that file', function () {
           expect(Faas.secret(this.name)).toBe('secret in a file')
