@@ -12,7 +12,7 @@
   "author": "Nick Gronow",
   "license": "ISC",
   "dependencies": {
-    "graphql-request": "^1.8.2",
+    "graphql-request": "^6.0.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
